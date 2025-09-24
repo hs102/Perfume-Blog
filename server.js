@@ -1,29 +1,23 @@
 const dotenv = require('dotenv');
 
 dotenv.config();
+require('./config/databse.js');
 const express = require('express');
 
 const app = express();
 
-const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
-const MongoStore = require("connect-mongo");
-const isSignedIn = require("./middleware/is-signed-in.js");
-const passUserToView = require("./middleware/pass-user-to-view.js");
+const MongoStore = require('connect-mongo');
+const isSignedIn = require('./middleware/is-signed-in.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
 
 // Controllers
 const authController = require('./controllers/auth.js');
 
 // Set the port from environment variable or default to 3000
-const port = process.env.PORT ? process.env.PORT : '3000';
-
-mongoose.connect(process.env.MONGODB_URI);
-
-mongoose.connection.on('connected', () => {
-  console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
-});
+const PORT = process.env.PORT ? process.env.PORT : '3000';
 
 // MIDDLEWARE
 //
@@ -33,6 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
+
+// Session Storage with MongoStore
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -43,6 +39,8 @@ app.use(
     }),
   })
 );
+
+// Add user variable to all templates
 app.use(passUserToView);
 
 // PUBLIC
@@ -54,10 +52,10 @@ app.use('/auth', authController);
 
 // PROTECTED
 
-app.get("/vip-lounge", isSignedIn, (req, res) => {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
+app.get('/vip-lounge', isSignedIn, (req, res) => {
+  res.send(`Welcome to the party ${req.session.user.username}.`);
 });
 
-app.listen(port, () => {
-  console.log(`The express app is ready on port ${port}!`);
+app.listen(PORT, () => {
+  console.log(`The express app is ready on port ${PORT}!`);
 });
