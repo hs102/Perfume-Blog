@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 require('./config/databse.js');
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
@@ -27,6 +28,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
+
+// View engine setup for EJS templates
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Session Storage with MongoStore
 app.use(
