@@ -8,49 +8,54 @@
       body {
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
         margin: 0;
         padding: 20px;
       }
 
       .container {
+        max-width: 500px;
+        margin: 50px auto;
         background-color: white;
-        padding: 30px;
-        border-radius: 8px;
+        border: 1px solid #ddd;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
       }
 
-      h1 {
+      .header {
+        background-color: #6b5ce7;
+        color: white;
+        padding: 20px;
         text-align: center;
-        color: #333;
-        margin-bottom: 10px;
       }
 
-      p {
-        text-align: center;
-        color: #666;
-        margin-bottom: 25px;
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .form-container {
+        padding: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
       }
 
       label {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         color: #333;
         font-weight: bold;
+        font-size: 14px;
       }
 
       input {
         width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
+        padding: 12px;
         border: 1px solid #ddd;
-        border-radius: 4px;
+        background-color: white;
         font-size: 14px;
+        box-sizing: border-box;
       }
 
       input:focus {
@@ -60,13 +65,14 @@
 
       button {
         width: 100%;
-        padding: 12px;
+        padding: 15px;
         background-color: #6b5ce7;
         color: white;
         border: none;
-        border-radius: 4px;
         font-size: 16px;
+        font-weight: bold;
         cursor: pointer;
+        margin-top: 10px;
       }
 
       button:hover {
@@ -76,12 +82,15 @@
       .footer-link {
         text-align: center;
         margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
         color: #666;
       }
 
       .footer-link a {
         color: #6b5ce7;
         text-decoration: none;
+        font-weight: bold;
       }
 
       .footer-link a:hover {
@@ -91,31 +100,38 @@
   </head>
   <body>
     <div class="container">
-      <h1>Sign In</h1>
-      <p>Welcome back to Perfume Blog</p>
+      <div class="header">
+        <h1>Sign In</h1>
+      </div>
 
-      <form action="/auth/sign-in" method="POST">
-        <label for="username">Username</label>
-        <input 
-          type="text" 
-          name="username" 
-          id="username" 
-          required
-        />
+      <div class="form-container">
+        <form action="/auth/sign-in" method="POST">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input 
+              type="text" 
+              name="username" 
+              id="username" 
+              required
+            />
+          </div>
 
-        <label for="password">Password</label>
-        <input 
-          type="password" 
-          name="password" 
-          id="password" 
-          required
-        />
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+              type="password" 
+              name="password" 
+              id="password" 
+              required
+            />
+          </div>
 
-        <button type="submit">Sign In</button>
-      </form>
+          <button type="submit">Sign In</button>
+        </form>
 
-      <div class="footer-link">
-        Don't have an account? <a href="/auth/sign-up">Sign up</a>
+        <div class="footer-link">
+          Don't have an account? <a href="/auth/sign-up">Sign Up</a>
+        </div>
       </div>
     </div>
   </body>
