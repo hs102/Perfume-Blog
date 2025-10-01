@@ -1,96 +1,139 @@
-# MEN Stack Starter Template with Session Authentication
+# 🌸 Perfume Blog
 
-Welcome to the MEN Stack Starter Template! This template provides a foundational setup for building web applications using MongoDB, Express.js, and Node.js, complete with session authentication. This is ideal for students looking to kickstart their development projects.
+A full-stack web application for perfume enthusiasts to discover, review, and share their favorite fragrances. Built with Node.js, Express, MongoDB, and EJS.
 
-## Table of Contents
-- [Prerequisites](#prerequisites)
-- [Clone the Repository](#clone-the-repository)
-- [Installation](#installation)
-- [Environment Setup](#environment-setup)
-- [Running the Application](#running-the-application)
-- [Removing Git and Creating Your Own Repo](#removing-git-and-creating-your-own-repo)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
+## 🔗 Deployment
 
-## Prerequisites
+**Live App:** [Deployed App Link Here](#)
 
-Before you begin, ensure you have the following installed on your machine:
-- [Node.js](https://nodejs.org/) (LTS or later)
-- [MongoDB](https://www.mongodb.com/) (make sure it's running)
-- [Git](https://git-scm.com/) (for cloning the repository)
+---
 
-## Clone the Repository
+## 📸 Screenshots
 
-To clone this repository, open your terminal and run:
+![App Screenshot](https://via.placeholder.com/800x400?text=Perfume+Blog+Screenshot)
 
+---
+
+## 📝 Description
+
+Perfume Blog is a community-driven platform where fragrance lovers can:
+- Create and manage perfume reviews
+- Organize perfumes by brand
+- Share their favorite scents with the community
+- Discover new fragrances through other users' reviews
+
+I built this application to combine my passion for web development with the art of perfumery, creating a space where enthusiasts can connect and share their olfactory experiences.
+
+---
+
+## 🚀 Getting Started
+
+### Planning Materials
+
+- **Trello Board:** [Project Planning Board](#)
+- **Wireframes:** See below
+- **ERD:** See below
+
+### Wireframes
+
+![Wireframes](https://via.placeholder.com/800x600?text=Wireframes+Coming+Soon)
+
+### ERD (Entity Relationship Diagram)
+
+![ERD](https://via.placeholder.com/800x600?text=ERD+Coming+Soon)
+
+### Installation
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/SEB-PT-6-Solutions/men-stack-session-auth-template.git YOUR_APP_NAME_HERE
+git clone https://github.com/hs102/Perfume-Blog.git
+cd Perfume-Blog
 ```
 
-## Installation
-Navigate into the cloned directory:
+2. Install dependencies:
 ```bash
-cd YOUR_APP_NAME
+npm install
 ```
 
-Then, install the necessary dependencies:
-
-```bash
-npm i
+3. Create a `.env` file in the root directory:
+```
+MONGODB_URI=your_mongodb_connection_string
+SESSION_SECRET=your_session_secret_key
+PORT=3000
 ```
 
-## Environment Setup
-```plaintext
-MONGODB_URI=atlas_db_uri
-SESSION_SECRET=your_secret_key
-```
-Replace `atlas_db_uri` with your desired database name and `your_secret_key` with a secure key.
-
-## Removing Git and Creating Your Own Repo
-To remove the existing Git history and create your own repository:
-
-1. Remove the existing .git folder:
-  ```bash
-  rm -rf .git
-  ```
-2. Initialize a new Git repository:
-  ```bash
-  git init
-  ```
-3. Add all files to the new repository:
-  ```bash
-  git add .
-  ```
-4. Commit the changes
-   ```bash
-   git commit -m "Initial commit"
-   ``` 
-5. Create a new repository on GitHub (or any other platform) and follow the instructions to push your local repository.
-  Make a new repository on [GitHub](https://github.com/) named `<your-project-name>`
-  Now link your local project to your remote GitHub repo:
-  ```bash
-  git remote add origin https://github.com/<github-username>/YOUR_APP_NAME.git
-  git push origin main
-  ```
-
-> 🚨 Do not copy the above command. It will not work. Your GitHub username will replace `<github-username>` (including the `<` and `>`) in the URL above.
-
-## Running the application
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-## Features
-- User registration and login with session management
-- Basic CRUD operations
-- Modular file structure
-- Example routes and controllers
-- Basic user model setup
-- Middleware for templates and authorization
-- Basic authentication flow
+5. Open your browser and navigate to `http://localhost:3000`
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+---
 
-Happy Coding!
+## 💻 Technologies Used
+
+- **Node.js** - JavaScript runtime environment
+- **Express.js** - Web application framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **EJS** - Templating engine for dynamic HTML
+- **bcrypt** - Password hashing
+- **express-session** - Session management
+- **connect-mongo** - MongoDB session store
+- **method-override** - HTTP verb support (PUT, DELETE)
+- **morgan** - HTTP request logger
+- **dotenv** - Environment variable management
+
+---
+
+## 🎯 Features
+
+### Current Features
+- ✅ User authentication (sign up, sign in, sign out)
+- ✅ Session-based user management
+- ✅ Secure password hashing with bcrypt
+- ✅ Responsive design
+- ✅ Clean and intuitive UI
+
+### Upcoming Features (Next Steps)
+- 🔜 Full CRUD operations for perfume reviews
+- 🔜 Brand management system
+- 🔜 User profiles with review history
+- 🔜 Search and filter functionality
+- 🔜 Rating system for perfumes
+- � Image upload for perfume bottles
+- 🔜 Comment system on reviews
+- 🔜 Favorite/bookmark perfumes
+- 🔜 Public discovery page for all reviews
+
+---
+
+## 📚 Attributions
+
+- **Font:** Arial (system font)
+- **Placeholder Images:** [via.placeholder.com](https://via.placeholder.com)
+- **Icons:** Emoji unicode characters
+- **Color Palette:** Custom design
+
+---
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+---
+
+## 👤 Author
+
+**Your Name**
+- GitHub: [@hs102](https://github.com/hs102)
+
+---
+
+## 🙏 Acknowledgments
+
+- General Assembly for the project requirements and guidance
+- The perfume community for inspiration
+- Fellow developers for code reviews and feedback
+
