@@ -1,6 +1,6 @@
 # Perfume Blog - Project Progress Tracker
 
-Hey! This document tracks where we're at with the project requirements. I'll be updating this as I go.
+This document tracks the current state of the project based on the ERD diagram and RESTful routes documentation.
 
 ---
 
@@ -9,12 +9,17 @@ Hey! This document tracks where we're at with the project requirements. I'll be 
 ### Authentication & Core Setup
 - [x] **Session-based authentication** - Sign up, sign in, and sign out all work with express-session
 - [x] **EJS templates** - Views are rendering properly with EJS
-- [x] **User model** - Got the User schema set up with username and password
+- [x] **User model** - User schema with username, password, and references to brands/reviews
 - [x] **Password hashing** - Using bcrypt to hash passwords before saving
 - [x] **Authorization middleware** - `isSignedIn` middleware protects routes
-- [x] **MongoDB connection** - Connected to MongoDB Atlas and it's working
+- [x] **MongoDB connection** - Connected to MongoDB Atlas
 - [x] **Environment variables** - Using dotenv for sensitive config
 - [x] **File organization** - Project follows MVC structure (models, views, controllers, middleware)
+
+### Database Models (Based on ERD)
+- [x] **User Model** - Includes references to brands[] and reviews[]
+- [x] **Brand Model** - With name and owner (User reference)
+- [x] **PerfumeReview Model** - With name, notes, owner, and brandId references
 
 ### Server & Middleware
 - [x] Express server running on port 3000
@@ -23,144 +28,215 @@ Hey! This document tracks where we're at with the project requirements. I'll be 
 - [x] Session storage with MongoDB (connect-mongo)
 - [x] User data passed to all views via middleware
 
+### Frontend
+- [x] **Homepage design** - Matching wireframe with navigation, welcome section, and recent reviews layout
+- [x] **Sign up page** - `/auth/sign-up`
+- [x] **Sign in page** - `/auth/sign-in`
+- [x] **Responsive navigation** - With Login/Sign Up buttons
+
+### Documentation
+- [x] **README.md** - Updated with routes images and database schema section
+- [x] **PROJECT_STRUCTURE.md** - Detailed breakdown of database schema and routes
+- [x] **IMPLEMENTATION_GUIDE.md** - Step-by-step guide for implementing remaining features
+
 ---
 
-## 🚧 What Still Needs to Be Done
+## 🚧 Phase 1: Brand Management (Next Priority)
 
-### MVP Requirements
+### Brand Routes (User-Specific)
+All routes follow pattern: `/users/:userId/brands/*`
 
-#### Data Model & CRUD
-- [ ] **Add a Perfume model** (or whatever the main entity is)
-  - Needs to have a relationship with User (like userId field)
-  - Should include fields like: name, brand, notes, rating, image, etc.
-- [ ] **Implement full CRUD for perfumes**
-  - CREATE: Form to add new perfume reviews
-  - READ: Show all perfumes, show individual perfume details
-  - UPDATE: Edit existing perfume reviews
-  - DELETE: Remove perfume reviews
-- [ ] **Authorization on CRUD operations**
-  - Only signed-in users can create/edit/delete
-  - Users can only edit/delete their own perfumes
+- [ ] **GET /users/:userId/brands** - Index (display all brands for user)
+- [ ] **GET /users/:userId/brands/new** - New (display form to create new brand)
+- [ ] **POST /users/:userId/brands** - Create (create new brand)
+- [ ] **GET /users/:userId/brands/:brandId** - Show (display specific brand details)
+- [ ] **GET /users/:userId/brands/:brandId/edit** - Edit (display form to edit brand)
+- [ ] **PUT /users/:userId/brands/:brandId** - Update (update specific brand)
+- [ ] **DELETE /users/:userId/brands/:brandId** - Delete (delete specific brand)
 
-#### Routing
-- [ ] Set up RESTful routes for perfumes
-  - GET /perfumes (index)
-  - GET /perfumes/new (form)
-  - POST /perfumes (create)
-  - GET /perfumes/:id (show)
-  - GET /perfumes/:id/edit (edit form)
-  - PUT /perfumes/:id (update)
-  - DELETE /perfumes/:id (delete)
+### Brand Controller & Views
+- [ ] Create `controllers/brands.js` with all 7 RESTful route handlers
+- [ ] Create `views/brands/index.ejs` - List all user's brands
+- [ ] Create `views/brands/new.ejs` - Form to create new brand
+- [ ] Create `views/brands/show.ejs` - Display brand details with associated reviews
+- [ ] Create `views/brands/edit.ejs` - Form to edit existing brand
 
-#### Controllers
-- [ ] Create a perfumes controller to handle all perfume-related logic
-- [ ] Move route handlers into the controller
+### Brand Authorization
+- [ ] Verify user is signed in for all brand routes
+- [ ] Verify user owns the brand before allowing edit/update/delete
+- [ ] Update user.brands[] array when creating/deleting brands
 
-### UI/UX Requirements
+---
 
-#### Styling & Design
-- [ ] **Create a visual theme**
-  - Pick a color palette (maybe something elegant for perfumes?)
-  - Apply consistent styling across all pages
-- [ ] **Use CSS Flexbox or Grid** for layouts
-- [ ] **Style all buttons** - Right now they're just default HTML buttons
-- [ ] **Add navigation menu** - Links to Home, All Perfumes, Add Perfume, Sign Out
-- [ ] **Check color contrast** - Make sure text is readable (WCAG AA standards)
-- [ ] **Pre-fill edit forms** - When editing a perfume, show current values
-- [ ] **Add alt text to images** - For accessibility
-- [ ] **Hide edit/delete UI** - Only show to the perfume's creator
+## 🚧 Phase 2: Perfume Review Management
 
-#### User Experience
-- [ ] Make the site easy to navigate for first-time users
-- [ ] Ensure no text overlaps images in an inaccessible way
-- [ ] Add a proper home page explaining what the site is about
+### Review Routes (User-Specific)
+All routes follow pattern: `/users/:userId/reviews/*`
 
-### Code Quality
+- [ ] **GET /users/:userId/reviews** - Index (display all reviews for user)
+- [ ] **GET /users/:userId/reviews/new** - New (display form to create new review)
+- [ ] **POST /users/:userId/reviews** - Create (create new review)
+- [ ] **GET /users/:userId/reviews/:reviewId** - Show (display specific review)
+- [ ] **GET /users/:userId/reviews/:reviewId/edit** - Edit (display form to edit review)
+- [ ] **PUT /users/:userId/reviews/:reviewId** - Update (update specific review)
+- [ ] **DELETE /users/:userId/reviews/:reviewId** - Delete (delete specific review)
 
-#### Clean Code
-- [ ] Remove any console.logs used for debugging
-- [ ] Delete commented-out code sections
-- [ ] Check for dead code (unused functions/routes)
-- [ ] Verify proper indentation throughout
-- [ ] Use plural names for arrays (like `perfumes`, not `perfume`)
-- [ ] Make sure there are no errors in terminal or browser console
+### Review Controller & Views
+- [ ] Create `controllers/reviews.js` with all 7 RESTful route handlers
+- [ ] Create `views/reviews/index.ejs` - List all user's reviews
+- [ ] Create `views/reviews/new.ejs` - Form to create new review (with brand dropdown)
+- [ ] Create `views/reviews/show.ejs` - Display review details with brand info
+- [ ] Create `views/reviews/edit.ejs` - Form to edit existing review
 
-### Git & GitHub
+### Review Authorization
+- [ ] Verify user is signed in for all review routes
+- [ ] Verify user owns the review before allowing edit/update/delete
+- [ ] Validate that selected brand exists and belongs to user
+- [ ] Update user.reviews[] array when creating/deleting reviews
 
-#### Repository
-- [ ] **Rename the repo** if needed - "Perfume-Blog" is good!
-- [ ] **Commit regularly** with descriptive messages
-  - Current status: Need to start making commits that show incremental progress
-- [ ] Make sure I'm the only contributor shown on GitHub
-- [ ] Keep the repo public
+---
 
-### README
+## 🚧 Phase 3: Public Routes & Features
 
-#### Documentation
-- [ ] Add a screenshot of the app (or logo)
-- [ ] Write a description of what the app does
-- [ ] Include a "Getting Started" section
-  - Link to deployed app
-  - Link to planning materials (Trello/wireframes?)
-- [ ] List technologies used
-- [ ] Add attributions for any external resources
-- [ ] Document "Next Steps" (future enhancements/stretch goals)
+### Public Routes
+- [ ] **GET /** - Update homepage to fetch and display recent reviews from database
+- [ ] **GET /reviews** - Display all public reviews (all users)
+- [ ] **GET /brands** - Display all public brands (all users)
+
+### Public Views
+- [ ] Update `views/index.ejs` to pull real data from PerfumeReview collection
+- [ ] Create `views/all-reviews.ejs` - Public page showing all reviews
+- [ ] Create `views/all-brands.ejs` - Public page showing all brands
+
+### Features
+- [ ] Homepage displays 6 most recent reviews with author info
+- [ ] Public reviews page with pagination
+- [ ] Public brands page showing brand names and review counts
+- [ ] Proper navigation between public and user-specific pages
+
+---
+
+## 🎨 UI/UX Improvements
+
+### Styling & Design
+- [x] Homepage matches wireframe design
+- [ ] Style brand pages (index, new, show, edit)
+- [ ] Style review pages (index, new, show, edit)
+- [ ] Consistent color scheme across all pages
+- [ ] Responsive design for mobile devices
+- [ ] Form validation and error messages
+- [ ] Success messages for CRUD operations
+
+### User Experience
+- [ ] Clear navigation between sections (Home, My Brands, My Reviews, Browse)
+- [ ] Show/hide edit/delete buttons based on ownership
+- [ ] Loading states for database operations
+- [ ] 404 page for not found resources
+- [ ] Better error handling and user feedback
+
+---
+
+## 🔧 Code Quality & Testing
+
+### Clean Code
+- [ ] Consistent naming conventions
+- [ ] Remove console.logs used for debugging
+- [ ] Proper error handling in all routes
+- [ ] Input validation and sanitization
+- [ ] Code comments where needed
+
+### Testing
+- [ ] Test all brand CRUD operations
+- [ ] Test all review CRUD operations
+- [ ] Test authorization (users can't edit others' content)
+- [ ] Test public routes work for non-authenticated users
+- [ ] Test edge cases (empty forms, invalid IDs, etc.)
+
+---
+
+## 📦 Deployment & Final Steps
 
 ### Deployment
-- [ ] **Deploy to a hosting service** (Render, Railway, or Heroku)
-- [ ] Make sure the deployed app works properly
-- [ ] Add deployment link to README
+- [ ] Deploy to hosting service (Render, Railway, or Heroku)
+- [ ] Verify all routes work in production
+- [ ] Test with production MongoDB connection
+- [ ] Update README with deployment link
+
+### Documentation
+- [x] README includes routes documentation
+- [x] Database schema documented
+- [ ] Add screenshots to README
+- [ ] Document all environment variables needed
+- [ ] Add "Getting Started" instructions for local development
 
 ---
 
-## 💡 Ideas for the Perfume Model
+## 💡 Database Relationships to Implement
 
-Just brainstorming what fields might make sense:
-
+### User → Brand (One-to-Many)
 ```javascript
-{
-  name: String (required),
-  brand: String,
-  description: String,
-  notes: {
-    top: String,
-    middle: String,
-    base: String
-  },
-  rating: Number (1-5 or 1-10),
-  season: String (Spring, Summer, Fall, Winter),
-  occasion: String (Daily, Evening, Special),
-  imageUrl: String,
-  userId: ObjectId (reference to User who created it),
-  createdAt: Date,
-  updatedAt: Date
-}
+// When creating a brand:
+user.brands.push(newBrand._id);
+await user.save();
+
+// When deleting a brand:
+user.brands.pull(brandId);
+await user.save();
+```
+
+### User → PerfumeReview (One-to-Many)
+```javascript
+// When creating a review:
+user.reviews.push(newReview._id);
+await user.save();
+
+// When deleting a review:
+user.reviews.pull(reviewId);
+await user.save();
+```
+
+### Brand → PerfumeReview (One-to-Many)
+```javascript
+// When deleting a brand, handle associated reviews:
+await PerfumeReview.deleteMany({ brandId: brand._id });
 ```
 
 ---
 
-## 🎯 Next Steps (In Order)
+## 🎯 Immediate Next Steps (In Priority Order)
 
-1. **Create the Perfume model** with relationship to User
-2. **Build out CRUD routes and controller** for perfumes
-3. **Create views** for perfume index, show, new, and edit
-4. **Add basic CSS styling** - start with layout and color scheme
-5. **Test authorization** - make sure users can only edit their own stuff
-6. **Clean up code** - remove console.logs, check indentation
-7. **Write the README** properly
-8. **Deploy the app**
-9. **Final testing** - go through everything one more time
-10. **Prepare presentation**
+1. ✅ Database models created (User, Brand, PerfumeReview)
+2. ✅ Homepage designed to match wireframe
+3. ✅ Documentation updated with routes and schema
+4. **Create Brand controller** (`controllers/brands.js`)
+5. **Implement Brand routes** in server.js
+6. **Build Brand views** (start with new.ejs and index.ejs)
+7. **Test Brand CRUD** operations thoroughly
+8. **Create Review controller** (`controllers/reviews.js`)
+9. **Implement Review routes** in server.js
+10. **Build Review views** (with brand selection dropdown)
+11. **Test Review CRUD** operations thoroughly
+12. **Update homepage** to fetch real reviews from database
+13. **Create public routes** for browsing all reviews and brands
+14. **Polish UI/UX** and add consistent styling
+15. **Deploy** to production
+16. **Final testing** and bug fixes
 
 ---
 
-## 📝 Notes to Self
+## 📋 Stretch Goals (Future Enhancements)
 
-- The authentication system is solid, so I can focus on building the perfume CRUD functionality
-- Need to think about whether to allow public viewing of perfumes (guests can see but not edit) or make everything require login
-- Should probably add some sample/seed data to make the app look nice during presentation
-- Consider adding a search or filter feature as a stretch goal
-- Maybe add ability to "favorite" other users' perfume reviews?
+- [ ] User profiles showing all their reviews and brands
+- [ ] Search functionality for reviews and brands
+- [ ] Filter reviews by brand, rating, or date
+- [ ] Rating system for perfumes (1-5 stars)
+- [ ] Image upload for perfume bottles
+- [ ] Comments on reviews
+- [ ] Favorite/bookmark system
+- [ ] Social features (follow users, like reviews)
+- [ ] Advanced search with multiple filters
+- [ ] Export reviews to PDF
+- [ ] Email notifications
 
 ---
 

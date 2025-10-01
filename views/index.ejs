@@ -13,7 +13,7 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #c0c0c0;
+      background-color: #f0f0f0;
       margin: 0;
       padding: 0;
     }
@@ -22,12 +22,13 @@
       max-width: 900px;
       margin: 20px auto;
       background-color: white;
-      border: 3px solid #000;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     /* Header Section */
     .header {
-      background-color: #333;
+      background-color: #6b5ce7;
       color: white;
       padding: 15px 0;
     }
@@ -83,11 +84,11 @@
       padding: 8px 20px;
       text-decoration: none;
       font-size: 16px;
-      border: 2px solid #333;
+      border: none;
       background-color: white;
-      color: #333;
+      color: #6b5ce7;
       cursor: pointer;
-      font-weight: normal;
+      font-weight: bold;
     }
 
     .btn-nav:hover {
@@ -132,9 +133,10 @@
     }
 
     .review-card {
-      border: 2px solid #ccc;
+      border: 1px solid #ddd;
       padding: 25px;
       background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .review-card h3 {
@@ -160,52 +162,57 @@
     .btn-read-more {
       display: inline-block;
       padding: 10px 25px;
-      border: 2px solid #333;
-      background-color: #fff;
-      color: #333;
+      border: none;
+      background-color: #6b5ce7;
+      color: white;
       text-decoration: none;
       font-size: 16px;
       cursor: pointer;
+      font-weight: bold;
     }
 
     .btn-read-more:hover {
-      background-color: #f0f0f0;
+      background-color: #5a4bc7;
     }
 
     /* User welcome box for logged in users */
     .user-welcome {
-      background-color: #f5f5f5;
+      background-color: #6b5ce7;
       padding: 20px;
-      border: 2px solid #ccc;
+      border: none;
       margin-bottom: 30px;
       text-align: center;
+      color: white;
     }
 
     .user-welcome h2 {
       font-size: 24px;
       margin-bottom: 10px;
+      color: white;
     }
 
     .user-welcome .username {
       font-size: 20px;
       font-weight: bold;
-      color: #333;
+      color: white;
     }
 
     .btn-signout {
       display: inline-block;
       margin-top: 15px;
       padding: 10px 25px;
-      border: 2px solid #333;
-      background-color: #333;
+      border: 2px solid white;
+      background-color: transparent;
       color: white;
       text-decoration: none;
       font-size: 16px;
       cursor: pointer;
+      font-weight: bold;
     }
 
     .btn-signout:hover {
-      background-color: #555;
+      background-color: white;
+      color: #6b5ce7;
     }
   </style>
 </head>

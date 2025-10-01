@@ -11,6 +11,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  reviews: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PerfumeReview',
+  }],
+  brands: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Brand',
+  }],
+}, {
+  timestamps: true,
 });
 
 const User = mongoose.model('User', userSchema);
