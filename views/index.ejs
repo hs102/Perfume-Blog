@@ -5,138 +5,274 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfume Blog - Home</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
+      background-color: #c0c0c0;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
+    .main-container {
+      max-width: 900px;
+      margin: 20px auto;
       background-color: white;
-      border: 1px solid #ddd;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border: 3px solid #000;
     }
 
+    /* Header Section */
     .header {
-      background-color: #6b5ce7;
+      background-color: #333;
       color: white;
-      padding: 30px;
-      text-align: center;
+      padding: 15px 0;
     }
 
-    .header h1 {
-      margin: 0 0 10px 0;
-      font-size: 32px;
+    .nav-container {
+      max-width: 850px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 18px;
       font-weight: bold;
+      letter-spacing: 1px;
     }
 
-    .header .subtitle {
-      margin: 0;
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       font-size: 16px;
     }
 
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0 5px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-links span {
+      color: white;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-nav {
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      border: 2px solid #333;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+      font-weight: normal;
+    }
+
+    .btn-nav:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Content Section */
     .content {
       padding: 40px;
     }
 
-    .welcome-box {
-      background-color: #6b5ce7;
-      color: white;
-      padding: 30px;
-      text-align: center;
+    .welcome-section {
+      margin-bottom: 40px;
+    }
+
+    .welcome-section h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #000;
+    }
+
+    .welcome-section p {
+      font-size: 18px;
+      color: #333;
       margin-bottom: 30px;
     }
 
-    .welcome-box h2 {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      font-weight: normal;
-    }
-
-    .welcome-box .username {
-      font-size: 28px;
+    /* Recent Reviews Section */
+    .reviews-section h2 {
+      font-size: 32px;
       font-weight: bold;
-      margin: 0;
+      margin-bottom: 30px;
+      color: #000;
     }
 
-    .info-box {
-      background-color: #f9f9f9;
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .review-card {
+      border: 2px solid #ccc;
       padding: 25px;
-      border-left: 4px solid #6b5ce7;
-      margin: 30px 0;
+      background-color: #fff;
     }
 
-    .info-box p {
-      margin: 0;
-      line-height: 1.6;
-      color: #555;
+    .review-card h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #000;
     }
 
-    .button-group {
-      text-align: center;
-      margin-top: 30px;
+    .review-card .author {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 15px;
     }
 
-    .btn {
+    .review-card .excerpt {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .btn-read-more {
       display: inline-block;
-      padding: 15px 40px;
-      margin: 5px 10px;
+      padding: 10px 25px;
+      border: 2px solid #333;
+      background-color: #fff;
+      color: #333;
       text-decoration: none;
       font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-read-more:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* User welcome box for logged in users */
+    .user-welcome {
+      background-color: #f5f5f5;
+      padding: 20px;
+      border: 2px solid #ccc;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .user-welcome h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .user-welcome .username {
+      font-size: 20px;
       font-weight: bold;
+      color: #333;
     }
 
-    .btn-primary {
-      background-color: #6b5ce7;
+    .btn-signout {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 25px;
+      border: 2px solid #333;
+      background-color: #333;
       color: white;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
     }
 
-    .btn-primary:hover {
-      background-color: #5a4bc7;
-    }
-
-    .btn-secondary {
-      background-color: white;
-      color: #6b5ce7;
-      border: 2px solid #6b5ce7;
-    }
-
-    .btn-secondary:hover {
-      background-color: #6b5ce7;
-      color: white;
+    .btn-signout:hover {
+      background-color: #555;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="main-container">
+    <!-- Navigation Header -->
     <div class="header">
-      <h1>Perfume Blog</h1>
-      <p class="subtitle">Discover and share your favorite fragrances</p>
+      <div class="nav-container">
+        <div class="logo">PERFUME BLOG</div>
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <span>|</span>
+            <a href="/brands">Brands</a>
+            <span>|</span>
+            <a href="/reviews">Reviews</a>
+            <span>|</span>
+          </div>
+          <div class="nav-buttons">
+            <% if (user) { %>
+              <a href="/auth/sign-out" class="btn-nav">Sign Out</a>
+            <% } else { %>
+              <a href="/auth/sign-in" class="btn-nav">Login</a>
+              <a href="/auth/sign-up" class="btn-nav">Sign Up</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
+    <!-- Main Content -->
     <div class="content">
+      <!-- Welcome Section -->
+      <div class="welcome-section">
+        <h1>Welcome to Perfume Blog</h1>
+        <p>Discover and review your favorite fragrances</p>
+      </div>
+
+      <!-- User Welcome (if logged in) -->
       <% if (user) { %>
-        <div class="welcome-box">
-          <h2>Welcome back,</h2>
-          <p class="username"><%= user.username %></p>
-        </div>
-
-        <div class="button-group">
-          <a href="/auth/sign-out" class="btn btn-primary">Sign Out</a>
-        </div>
-      <% } else { %>
-        <div class="info-box">
-          <p>Join our community to review perfumes, share your favorites, and discover new scents. Create an account to get started!</p>
-        </div>
-
-        <div class="button-group">
-          <a href="/auth/sign-up" class="btn btn-primary">Sign Up</a>
-          <a href="/auth/sign-in" class="btn btn-secondary">Sign In</a>
+        <div class="user-welcome">
+          <h2>Welcome back, <span class="username"><%= user.username %></span>!</h2>
+          <p>Ready to explore more fragrances?</p>
         </div>
       <% } %>
+
+      <!-- Recent Reviews Section -->
+      <div class="reviews-section">
+        <h2>Recent Reviews</h2>
+        <div class="reviews-grid">
+          <!-- Review Card 1 -->
+          <div class="review-card">
+            <h3>Chanel No. 5</h3>
+            <p class="author">By: User123</p>
+            <p class="excerpt">Classic floral scent...</p>
+            <a href="/reviews/1" class="btn-read-more">Read More</a>
+          </div>
+
+          <!-- Review Card 2 -->
+          <div class="review-card">
+            <h3>Dior Sauvage</h3>
+            <p class="author">By: PerfumeLover</p>
+            <p class="excerpt">Fresh and masculine...</p>
+            <a href="/reviews/2" class="btn-read-more">Read More</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

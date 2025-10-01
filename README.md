@@ -8,9 +8,14 @@ A full-stack web application for perfume enthusiasts to discover, review, and sh
 
 ---
 
-## 📸 Screenshots
+## Wireframes
 
-![App Screenshot](https://via.placeholder.com/800x400?text=Perfume+Blog+Screenshot)
+
+<img src="./static/image%20(2).png" width="48%" /> <img src="./static/image%20(3).png" width="48%" />
+
+<img src="./static/image%20(4).png" width="48%" /> <img src="./static/image%20(5).png" width="48%" />
+
+<img src="./static/image%20(6).png" width="48%" /> <img src="./static/image%20(7).png" width="48%" />
 
 ---
 
@@ -31,16 +36,6 @@ I built this application to combine my passion for web development with the art 
 ### Planning Materials
 
 - **Trello Board:** [Project Planning Board](#)
-- **Wireframes:** See below
-- **ERD:** See below
-
-### Wireframes
-
-![Wireframes](https://via.placeholder.com/800x600?text=Wireframes+Coming+Soon)
-
-### ERD (Entity Relationship Diagram)
-
-![ERD](https://via.placeholder.com/800x600?text=ERD+Coming+Soon)
 
 ### Installation
 
