@@ -226,10 +226,17 @@
           <div class="nav-links">
             <a href="/">Home</a>
             <span>|</span>
-            <a href="/brands">Brands</a>
-            <span>|</span>
-            <a href="/reviews">Reviews</a>
-            <span>|</span>
+            <% if (user) { %>
+              <a href="/users/<%= user._id %>/brands">My Brands</a>
+              <span>|</span>
+              <a href="/users/<%= user._id %>/reviews">My Reviews</a>
+              <span>|</span>
+            <% } else { %>
+              <a href="#brands">Brands</a>
+              <span>|</span>
+              <a href="#reviews">Reviews</a>
+              <span>|</span>
+            <% } %>
           </div>
           <div class="nav-buttons">
             <% if (user) { %>
@@ -262,23 +269,20 @@
       <!-- Recent Reviews Section -->
       <div class="reviews-section">
         <h2>Recent Reviews</h2>
-        <div class="reviews-grid">
-          <!-- Review Card 1 -->
-          <div class="review-card">
-            <h3>Chanel No. 5</h3>
-            <p class="author">By: User123</p>
-            <p class="excerpt">Classic floral scent...</p>
-            <a href="/reviews/1" class="btn-read-more">Read More</a>
+        <% if (recentReviews && recentReviews.length > 0) { %>
+          <div class="reviews-grid">
+            <% recentReviews.forEach(review => { %>
+              <div class="review-card">
+                <h3><%= review.name %></h3>
+                <p class="author">By: <%= review.owner ? review.owner.username : 'Unknown' %></p>
+                <p class="excerpt"><%= review.notes.substring(0, 50) %><%= review.notes.length > 50 ? '...' : '' %></p>
+                <a href="/users/<%= review.owner._id %>/reviews/<%= review._id %>" class="btn-read-more">Read More</a>
+              </div>
+            <% }); %>
           </div>
-
-          <!-- Review Card 2 -->
-          <div class="review-card">
-            <h3>Dior Sauvage</h3>
-            <p class="author">By: PerfumeLover</p>
-            <p class="excerpt">Fresh and masculine...</p>
-            <a href="/reviews/2" class="btn-read-more">Read More</a>
-          </div>
-        </div>
+        <% } else { %>
+          <p style="text-align: center; color: #666; padding: 40px 0;">No reviews yet. Be the first to create one!</p>
+        <% } %>
       </div>
     </div>
   </div>

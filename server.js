@@ -16,6 +16,8 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 
 // Controllers
 const authController = require('./controllers/auth.js');
+const brandsController = require('./controllers/brands.js');
+const reviewsController = require('./controllers/reviews.js');
 
 // Set the port from environment variable or default to 3000
 const PORT = process.env.PORT ? process.env.PORT : '3000';
@@ -51,11 +53,25 @@ app.use(
 app.use(passUserToView);
 
 // PUBLIC
-app.get('/', (req, res) => {
-  res.render('index.ejs');
+app.get('/', async (req, res) => {
+  try {
+    const PerfumeReview = require('./models/perfume-review.js');
+    const recentReviews = await PerfumeReview.find()
+      .populate('owner', 'username')
+      .populate('brandId', 'name')
+      .sort({ createdAt: -1 })
+      .limit(6);
+    
+    res.render('index.ejs', { recentReviews });
+  } catch (error) {
+    console.error(error);
+    res.render('index.ejs', { recentReviews: [] });
+  }
 });
 
 app.use('/auth', authController);
+app.use(isSignedIn, brandsController);
+app.use(isSignedIn, reviewsController);
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}!`);

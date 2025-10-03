@@ -1,44 +1,6 @@
 # 🌸 Perfume Blog
 
-A full-stack web application for perfume enthusiasts to discover, review, and share t---
-
-## 🗺️ Routes
-
-The application follows RESTful routing conventions:
-
-### Authentication Routes
-<img src="./static/routes1.png" width="100%" />
-
-### Brand Routes
-<img src="./static/routes2.png" width="100%" />
-
-### Perfume Review Routes
-<img src="./static/routes3.png" width="100%" />
-
-### General Routes
-<img src="./static/routes-4.png" width="100%" />
-
----
-
-## 🗄️ Database Schema
-
-The application uses MongoDB with three main collections:
-
-- **User**: Stores user credentials and manages authentication
-  - Links to multiple Brands (one-to-many)
-  - Links to multiple PerfumeReviews (one-to-many)
-
-- **Brand**: Represents perfume brands
-  - Created and owned by Users
-  - Categorizes PerfumeReviews
-
-- **PerfumeReview**: Stores perfume reviews with notes
-  - Owned by a User
-  - Belongs to a Brand
-
-For detailed schema information and relationships, see the ERD diagram in the planning materials.
-
----ances. Built with Node.js, Express, MongoDB, and EJS.
+A full-stack web application for perfume enthusiasts to discover, review, and share their favorite fragrances. Built with Node.js, Express, MongoDB, and EJS.
 
 ## 🔗 Deployment
 
@@ -124,25 +86,25 @@ npm run dev
 
 ### Current Features
 - ✅ User authentication (sign up, sign in, sign out)
+- ✅ Full CRUD for perfume reviews
+- ✅ Full CRUD for brands
 - ✅ Session-based user management
 - ✅ Secure password hashing with bcrypt
 - ✅ Responsive design
 - ✅ Clean and intuitive UI
 
 ### Upcoming Features (Next Steps)
-- 🔜 Full CRUD operations for perfume reviews
-- 🔜 Brand management system
 - 🔜 User profiles with review history
 - 🔜 Search and filter functionality
 - 🔜 Rating system for perfumes
-- � Image upload for perfume bottles
+- 🔜 Image upload for perfume bottles
 - 🔜 Comment system on reviews
 - 🔜 Favorite/bookmark perfumes
 - 🔜 Public discovery page for all reviews
 
 ---
 
-## �️ Routes
+## 🗺️ Routes
 
 The application follows RESTful routing conventions:
 
@@ -160,7 +122,17 @@ The application follows RESTful routing conventions:
 
 ---
 
-## �📚 Attributions
+## 🗄️ Database Schema
+
+The application uses MongoDB with three main collections:
+
+- **User**: Stores user credentials and manages authentication
+- **Brand**: Represents perfume brands created by users
+- **PerfumeReview**: Stores perfume reviews with notes
+
+---
+
+## 📚 Attributions
 
 - **Font:** Arial (system font)
 - **Placeholder Images:** [via.placeholder.com](https://via.placeholder.com)

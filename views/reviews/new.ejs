@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Review - Perfume Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background-color: #6b5ce7;
+      color: white;
+      padding: 20px 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .header p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .form-container {
+      padding: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    label .required {
+      color: #e74c3c;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      background-color: white;
+      font-size: 14px;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #6b5ce7;
+      box-shadow: 0 0 0 2px rgba(107, 92, 231, 0.1);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .hint-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid #ddd;
+    }
+
+    button,
+    .btn-secondary {
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      border: none;
+    }
+
+    button[type="submit"] {
+      background-color: #6b5ce7;
+      color: white;
+      flex: 1;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #5a4bc7;
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: #6b5ce7;
+      border: 2px solid #6b5ce7;
+      flex: 1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f8f7ff;
+    }
+
+    .brand-actions {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .brand-actions a {
+      color: #6b5ce7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .brand-actions a:hover {
+      text-decoration: underline;
+    }
+
+    .no-brands-message {
+      background-color: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .no-brands-message p {
+      margin: 0 0 10px 0;
+      color: #856404;
+    }
+
+    .no-brands-message a {
+      color: #6b5ce7;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .no-brands-message a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Create New Perfume Review</h1>
+      <p>Share your thoughts about a fragrance</p>
+    </div>
+
+    <div class="form-container">
+      <% if (brands && brands.length === 0) { %>
+        <div class="no-brands-message">
+          <p><strong>⚠️ You need to create a brand first!</strong></p>
+          <p>Reviews must be associated with a brand. Please <a href="/users/<%= userId %>/brands/new">create a brand</a> before adding a review.</p>
+        </div>
+      <% } %>
+
+      <form action="/users/<%= userId %>/reviews" method="POST">
+        <div class="form-group">
+          <label for="name">
+            Perfume Name <span class="required">*</span>
+          </label>
+          <input 
+            type="text" 
+            name="name" 
+            id="name" 
+            placeholder="e.g., Chanel No. 5"
+            required
+            <%= brands.length === 0 ? 'disabled' : '' %>
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="brandId">
+            Brand <span class="required">*</span>
+          </label>
+          <select 
+            name="brandId" 
+            id="brandId" 
+            required
+            <%= brands.length === 0 ? 'disabled' : '' %>
+          >
+            <option value="">-- Select a Brand --</option>
+            <% brands.forEach(brand => { %>
+              <option value="<%= brand._id %>"><%= brand.name %></option>
+            <% }); %>
+          </select>
+          <div class="brand-actions">
+            Don't see your brand? <a href="/users/<%= userId %>/brands/new">Create a new brand</a>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">
+            Review Notes <span class="required">*</span>
+          </label>
+          <textarea 
+            name="notes" 
+            id="notes" 
+            placeholder="Describe the fragrance... What are the notes? How does it smell? When would you wear it?"
+            required
+            <%= brands.length === 0 ? 'disabled' : '' %>
+          ></textarea>
+          <p class="hint-text">Share your personal experience with this perfume. What makes it special?</p>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" <%= brands.length === 0 ? 'disabled' : '' %>>
+            Create Review
+          </button>
+          <a href="/users/<%= userId %>/reviews" class="btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

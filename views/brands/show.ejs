@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= brand.name %> - Perfume Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background-color: #6b5ce7;
+      color: white;
+      padding: 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      padding: 15px 30px;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-links a {
+      color: #6b5ce7;
+      text-decoration: none;
+      margin-right: 20px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .btn-edit,
+    .btn-delete {
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-edit {
+      background-color: #6b5ce7;
+      color: white;
+    }
+
+    .btn-edit:hover {
+      background-color: #5a4bc7;
+    }
+
+    .btn-delete {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .btn-delete:hover {
+      background-color: #c0392b;
+    }
+
+    .reviews-section h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .review-card {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+
+    .review-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .review-card .notes {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .review-card .date {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .review-card a {
+      color: #6b5ce7;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .review-card a:hover {
+      text-decoration: underline;
+    }
+
+    .empty-reviews {
+      text-align: center;
+      padding: 40px;
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><%= brand.name %></h1>
+    </div>
+
+    <div class="nav-links">
+      <a href="/">← Back to Home</a>
+      <a href="/users/<%= userId %>/brands">My Brands</a>
+      <a href="/users/<%= userId %>/reviews">My Reviews</a>
+    </div>
+
+    <div class="content">
+      <div class="actions">
+        <a href="/users/<%= userId %>/brands/<%= brand._id %>/edit" class="btn-edit">Edit Brand</a>
+        <form action="/users/<%= userId %>/brands/<%= brand._id %>?_method=DELETE" method="POST" style="display: inline;">
+          <button type="submit" class="btn-delete" onclick="return confirm('Are you sure? This will delete all reviews associated with this brand.')">Delete Brand</button>
+        </form>
+      </div>
+
+      <div class="reviews-section">
+        <h2>Reviews for this Brand (<%= reviews.length %>)</h2>
+        
+        <% if (reviews && reviews.length > 0) { %>
+          <% reviews.forEach(review => { %>
+            <div class="review-card">
+              <h3><%= review.name %></h3>
+              <div class="notes">
+                <%= review.notes.substring(0, 200) %><%= review.notes.length > 200 ? '...' : '' %>
+              </div>
+              <div class="date">
+                Created: <%= new Date(review.createdAt).toLocaleDateString() %>
+              </div>
+              <div style="margin-top: 15px;">
+                <a href="/users/<%= userId %>/reviews/<%= review._id %>">Read Full Review →</a>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <div class="empty-reviews">
+            <p>No reviews yet for this brand.</p>
+            <p><a href="/users/<%= userId %>/reviews/new">Create your first review</a></p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
