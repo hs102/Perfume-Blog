@@ -31,40 +31,13 @@ I built this application to combine my passion for web development with the art 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Planning Materials
 
-- **Trello Board:** [Project Planning Board](#)
+- Project Planning Board: [PROJECT_PROGRESS.md](./PROJECT_PROGRESS.md)
 
-### Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/hs102/Perfume-Blog.git
-cd Perfume-Blog
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Create a `.env` file in the root directory:
-```
-MONGODB_URI=your_mongodb_connection_string
-SESSION_SECRET=your_session_secret_key
-PORT=3000
-```
-
-4. Start the development server:
-```bash
-npm run dev
-```
-
-5. Open your browser and navigate to `http://localhost:3000`
-
----
 
 ## 💻 Technologies Used
 
@@ -94,13 +67,10 @@ npm run dev
 - ✅ Clean and intuitive UI
 
 ### Upcoming Features (Next Steps)
-- 🔜 User profiles with review history
 - 🔜 Search and filter functionality
-- 🔜 Rating system for perfumes
 - 🔜 Image upload for perfume bottles
-- 🔜 Comment system on reviews
 - 🔜 Favorite/bookmark perfumes
-- 🔜 Public discovery page for all reviews
+
 
 ---
 
@@ -122,9 +92,15 @@ The application follows RESTful routing conventions:
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 The application uses MongoDB with three main collections:
+
+### Entity Relationship Diagram
+
+<img src="./static/ERD.png" width="80%" />
+
+### Collections
 
 - **User**: Stores user credentials and manages authentication
 - **Brand**: Represents perfume brands created by users
@@ -147,16 +123,19 @@ This project is open source and available under the MIT License.
 
 ---
 
-## 👤 Author
+## Author
 
-**Your Name**
+Khalil & Dennis
 - GitHub: [@hs102](https://github.com/hs102)
+
+(if you're reading this, hi! we probably spent way too long on the CSS)
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - General Assembly for the project requirements and guidance
 - The perfume community for inspiration
 - Fellow developers for code reviews and feedback
+- Khalil for the design ideas (and Dennis for actually implementing them)
 

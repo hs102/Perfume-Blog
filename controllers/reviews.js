@@ -3,6 +3,8 @@ const router = express.Router();
 const PerfumeReview = require('../models/perfume-review.js');
 const Brand = require('../models/brand.js');
 
+// reviews controller - dennis wrote most of this at 2am, khalil fixed the bugs later
+
 // Index - Show all reviews for a user
 router.get('/users/:userId/reviews', async (req, res) => {
   try {
