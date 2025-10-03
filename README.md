@@ -4,7 +4,7 @@ A full-stack web application for perfume enthusiasts to discover, review, and sh
 
 ## 🔗 Deployment
 
-**Live App:** [Deployed App Link Here](#)
+**Live App:** [https://perfume-blog.onrender.com](https://perfume-blog.onrender.com)
 
 ---
 
@@ -108,27 +108,12 @@ The application uses MongoDB with three main collections:
 
 ---
 
-## 📚 Attributions
 
-- **Font:** Arial (system font)
-- **Placeholder Images:** [via.placeholder.com](https://via.placeholder.com)
-- **Icons:** Emoji unicode characters
-- **Color Palette:** Custom design
-
----
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
----
 
 ## Author
 
-Khalil & Dennis
+Yaseen Elzeiny
 - GitHub: [@hs102](https://github.com/hs102)
-
-(if you're reading this, hi! we probably spent way too long on the CSS)
 
 ---
 
@@ -136,6 +121,5 @@ Khalil & Dennis
 
 - General Assembly for the project requirements and guidance
 - The perfume community for inspiration
-- Fellow developers for code reviews and feedback
-- Khalil for the design ideas (and Dennis for actually implementing them)
+- Big thanks to my instructors Khalil and Dennis for teaching me all of this
 

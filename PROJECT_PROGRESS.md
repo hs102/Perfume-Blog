@@ -260,4 +260,4 @@ Current Status: Ready for testing and deployment!
 ---
 
 Last Updated: October 4, 2025
-(khalil and dennis made this - if you're reading it hope it helps)
+(made by yaseen with help from instructors khalil and dennis)

@@ -7,8 +7,7 @@ const path = require('path');
 
 const app = express();
 
-// khalil and dennis were here :)
-// seriously though if you're reading this we hope the code makes sense
+// yaseen was here :) big thanks to khalil and dennis for teaching me
 
 const methodOverride = require('method-override');
 const morgan = require('morgan');
