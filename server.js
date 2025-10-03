@@ -69,6 +69,73 @@ app.get('/', async (req, res) => {
   }
 });
 
+// PUBLIC ROUTES - View brands and reviews (no auth required)
+const Brand = require('./models/brand.js');
+const PerfumeReview = require('./models/perfume-review.js');
+
+// View all brands
+app.get('/brands', async (req, res) => {
+  try {
+    const brands = await Brand.find().populate('owner', 'username').sort({ name: 1 });
+    res.render('public/brands.ejs', { brands });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading brands');
+  }
+});
+
+// View specific brand
+app.get('/brands/:brandId', async (req, res) => {
+  try {
+    const brand = await Brand.findById(req.params.brandId).populate('owner', 'username');
+    const reviews = await PerfumeReview.find({ brandId: req.params.brandId })
+      .populate('owner', 'username')
+      .sort({ createdAt: -1 });
+    
+    if (!brand) {
+      return res.status(404).send('Brand not found');
+    }
+    
+    res.render('public/brand-detail.ejs', { brand, reviews });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading brand');
+  }
+});
+
+// View all reviews
+app.get('/reviews', async (req, res) => {
+  try {
+    const reviews = await PerfumeReview.find()
+      .populate('owner', 'username')
+      .populate('brandId', 'name')
+      .sort({ createdAt: -1 });
+    
+    res.render('public/reviews.ejs', { reviews });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading reviews');
+  }
+});
+
+// View specific review
+app.get('/reviews/:reviewId', async (req, res) => {
+  try {
+    const review = await PerfumeReview.findById(req.params.reviewId)
+      .populate('owner', 'username')
+      .populate('brandId', 'name');
+    
+    if (!review) {
+      return res.status(404).send('Review not found');
+    }
+    
+    res.render('public/review-detail.ejs', { review });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading review');
+  }
+});
+
 app.use('/auth', authController);
 app.use(isSignedIn, brandsController);
 app.use(isSignedIn, reviewsController);

@@ -226,15 +226,14 @@
           <div class="nav-links">
             <a href="/">Home</a>
             <span>|</span>
+            <a href="/brands">Brands</a>
+            <span>|</span>
+            <a href="/reviews">Reviews</a>
+            <span>|</span>
             <% if (user) { %>
               <a href="/users/<%= user._id %>/brands">My Brands</a>
               <span>|</span>
               <a href="/users/<%= user._id %>/reviews">My Reviews</a>
-              <span>|</span>
-            <% } else { %>
-              <a href="#brands">Brands</a>
-              <span>|</span>
-              <a href="#reviews">Reviews</a>
               <span>|</span>
             <% } %>
           </div>

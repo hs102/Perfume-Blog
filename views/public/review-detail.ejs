@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= review.name %> - Perfume Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      background-color: #6b5ce7;
+      color: white;
+      padding: 30px;
+    }
+
+    .header h1 {
+      margin: 0 0 10px 0;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .header .brand {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .nav-links {
+      padding: 15px 30px;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav-links a {
+      color: #6b5ce7;
+      text-decoration: none;
+      margin-right: 20px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .meta-info {
+      display: flex;
+      gap: 30px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .meta-item {
+      color: #666;
+    }
+
+    .meta-item strong {
+      color: #333;
+      font-weight: bold;
+    }
+
+    .review-notes {
+      line-height: 1.8;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 40px;
+      white-space: pre-wrap;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      padding-top: 30px;
+      border-top: 1px solid #ddd;
+    }
+
+    .btn-edit {
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #6b5ce7;
+      color: white;
+    }
+
+    .btn-edit:hover {
+      background-color: #5a4bc7;
+    }
+
+    .btn-back {
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: white;
+      color: #6b5ce7;
+      border: 2px solid #6b5ce7;
+    }
+
+    .btn-back:hover {
+      background-color: #f8f7ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><%= review.name %></h1>
+      <div class="brand">Brand: <%= review.brandId ? review.brandId.name : 'Unknown' %></div>
+    </div>
+
+    <div class="nav-links">
+      <a href="/">← Home</a>
+      <a href="/brands">All Brands</a>
+      <a href="/reviews">All Reviews</a>
+      <% if (user) { %>
+        <a href="/users/<%= user._id %>/reviews">My Reviews</a>
+      <% } %>
+    </div>
+
+    <div class="content">
+      <div class="meta-info">
+        <div class="meta-item">
+          <strong>Author:</strong> <%= review.owner ? review.owner.username : 'Unknown' %>
+        </div>
+        <div class="meta-item">
+          <strong>Created:</strong> <%= new Date(review.createdAt).toLocaleDateString() %>
+        </div>
+        <% if (review.updatedAt && review.updatedAt.toString() !== review.createdAt.toString()) { %>
+          <div class="meta-item">
+            <strong>Updated:</strong> <%= new Date(review.updatedAt).toLocaleDateString() %>
+          </div>
+        <% } %>
+      </div>
+
+      <h2 style="margin-bottom: 20px; color: #333;">Review Notes</h2>
+      <div class="review-notes">
+        <%= review.notes %>
+      </div>
+
+      <div class="actions">
+        <% if (user && review.owner && user._id === review.owner._id.toString()) { %>
+          <a href="/users/<%= user._id %>/reviews/<%= review._id %>/edit" class="btn-edit">Edit This Review</a>
+        <% } %>
+        <a href="/reviews" class="btn-back">Back to All Reviews</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
