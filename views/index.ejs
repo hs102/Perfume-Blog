@@ -43,9 +43,17 @@
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 18px;
       font-weight: bold;
       letter-spacing: 1px;
+    }
+
+    .logo img {
+      height: 35px;
+      width: auto;
     }
 
     .nav-right {
@@ -221,7 +229,10 @@
     <!-- Navigation Header -->
     <div class="header">
       <div class="nav-container">
-        <div class="logo">PERFUME BLOG</div>
+        <div class="logo">
+          <img src="/static/logo.png" alt="Perfume Blog Logo">
+          PERFUME BLOG
+        </div>
         <div class="nav-right">
           <div class="nav-links">
             <a href="/">Home</a>
