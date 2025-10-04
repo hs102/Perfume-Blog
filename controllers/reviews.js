@@ -8,10 +8,6 @@ const Brand = require('../models/brand.js');
 // Index - Show all reviews for a user
 router.get('/users/:userId/reviews', async (req, res) => {
   try {
-    if (req.session.user._id !== req.params.userId) {
-      return res.status(403).send('Unauthorized');
-    }
-    
     const reviews = await PerfumeReview.find({ owner: req.params.userId })
       .populate('brandId', 'name')
       .sort({ createdAt: -1 });
@@ -63,10 +59,6 @@ router.post('/users/:userId/reviews', async (req, res) => {
 // Show - Display specific review
 router.get('/users/:userId/reviews/:reviewId', async (req, res) => {
   try {
-    if (req.session.user._id !== req.params.userId) {
-      return res.status(403).send('Unauthorized');
-    }
-    
     const review = await PerfumeReview.findById(req.params.reviewId)
       .populate('brandId', 'name')
       .populate('owner', 'username');

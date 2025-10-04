@@ -6,10 +6,6 @@ const PerfumeReview = require('../models/perfume-review.js');
 // Index - Show all brands for a user
 router.get('/users/:userId/brands', async (req, res) => {
   try {
-    if (req.session.user._id !== req.params.userId) {
-      return res.status(403).send('Unauthorized');
-    }
-    
     const brands = await Brand.find({ owner: req.params.userId }).sort({ name: 1 });
     res.render('brands/index.ejs', { brands });
   } catch (error) {
@@ -55,10 +51,6 @@ router.post('/users/:userId/brands', async (req, res) => {
 // Show - Display specific brand
 router.get('/users/:userId/brands/:brandId', async (req, res) => {
   try {
-    if (req.session.user._id !== req.params.userId) {
-      return res.status(403).send('Unauthorized');
-    }
-    
     const brand = await Brand.findById(req.params.brandId);
     const reviews = await PerfumeReview.find({ brandId: req.params.brandId }).sort({ createdAt: -1 });
     
