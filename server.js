@@ -39,6 +39,9 @@ app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Serve static files from the static folder
+app.use('/static', express.static(path.join(__dirname, 'static')));
+
 // Session Storage with MongoStore
 app.use(
   session({
